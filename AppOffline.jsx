@@ -12,7 +12,7 @@ const AppOffline = () => {
       const htmlFileContent = await FileSystem.readAsStringAsync(
         "./assets/dist/index.html"
       );
-
+      console.log(htmlFileContent.length);
       // Save the HTML file to the local file system
       const fileUri = FileSystem.documentDirectory + "index.html";
       await FileSystem.writeAsStringAsync(fileUri, htmlFileContent);
