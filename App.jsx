@@ -1,17 +1,34 @@
 import WebView from "react-native-webview";
 import { View, Text, ActivityIndicator } from "react-native";
-import { useState } from "react";
-// WebView Online -> before all
-
-// Show loading and after loaded hide it.
-
-// WHen back the app is closed
+import { useState, useRef, useEffect } from "react";
+import { BackHandler } from "react-native";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const webViewRef = useRef(null);
+
+  // Handle the back button press
+  const handleBackButton = () => {
+    if (webViewRef.current) {
+      webViewRef.current.goBack();
+      return true; // Return true to prevent the app from closing
+    }
+    return false; // Return false if there's no web history to go back to
+  };
+
+  // Add a back button listener when the component mounts
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButton);
+
+    // Clean up the back button listener when the component unmounts
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButton);
+    };
+  }, []);
   return (
     <>
       <WebView
+        ref={webViewRef}
         source={{ uri: "https://portuguese-umbundo-app.vercel.app/" }}
         style={{ flex: 1 }}
         allowsBackForwardNavigationGestures
