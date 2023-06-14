@@ -29,7 +29,9 @@ export default function App() {
     <>
       <WebView
         ref={webViewRef}
-        source={{ uri: "https://portuguese-umbundo-app.vercel.app/" }}
+        source={{
+          uri: "https://portuguese-umbundo-app.vercel.app?local=true/",
+        }}
         style={{ flex: 1 }}
         allowsBackForwardNavigationGestures
         onLoadStart={() => setLoading(true)}
@@ -46,7 +48,7 @@ export default function App() {
             right: 0,
             justifyContent: "center",
             alignItems: "center",
-            transform: "scale(2)",
+            transform: "scale(1.5)",
           }}
         >
           <View
@@ -55,7 +57,7 @@ export default function App() {
             <ActivityIndicator color="#8e413d" size="large" />
             <Text
               style={{
-                fontSize: 7,
+                fontSize: 8,
                 marginTop: 10,
               }}
             >
