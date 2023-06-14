@@ -49,7 +49,19 @@ export default function App() {
             transform: "scale(2)",
           }}
         >
-          <ActivityIndicator size="large" />
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <ActivityIndicator color="#8e413d" size="large" />
+            <Text
+              style={{
+                fontSize: 7,
+                marginTop: 10,
+              }}
+            >
+              Aguarde enquanto preparamos tudo!
+            </Text>
+          </View>
         </View>
       )}
     </>
